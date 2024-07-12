@@ -22,7 +22,6 @@ const productadd = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 const productget = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.query.category, 'req.query.searchTerm');
     const searchQuery = req.query.searchTerm;
     const category = req.query.category;
     // eslint-disable-next-line prefer-const
@@ -84,6 +83,10 @@ const updateStock = (productIds, stockquantity) => __awaiter(void 0, void 0, voi
         console.error('Error updating products:', error);
     }
 });
+const updateProduct = (id, body) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield userModel_1.Product.findByIdAndUpdate(id, body, { new: true });
+    return result;
+});
 const productdelete = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield userModel_1.Product.findByIdAndDelete(id);
     return result;
@@ -94,5 +97,6 @@ exports.ProductServices = {
     productgetbyid,
     checkStock,
     updateStock,
-    productdelete
+    productdelete,
+    updateProduct
 };

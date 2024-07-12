@@ -76,11 +76,22 @@ const Productdelete = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(v
         data: result
     });
 }));
+const updateProduct = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield userServices_1.ProductServices.updateProduct(id, req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        message: "Product updated successfully",
+        success: true,
+        data: result
+    });
+}));
 exports.productcontroller = {
     Productadd,
     Productget,
     Productgetbyid,
     checkStock,
     updateStock,
-    Productdelete
+    Productdelete,
+    updateProduct
 };

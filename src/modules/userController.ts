@@ -70,7 +70,16 @@ const Productdelete = asyncHandler(async (req, res) => {
         data:result
     });
 });
-
+const updateProduct = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const result = await ProductServices.updateProduct(id,req.body);
+    sendResponse(res,{
+        statusCode:200,
+        message:"Product updated successfully",
+        success:true,
+        data:result
+    });
+})
 export  const
  productcontroller = {
     Productadd,
@@ -78,5 +87,6 @@ export  const
     Productgetbyid,
     checkStock,
     updateStock,
-    Productdelete
+    Productdelete,
+    updateProduct
 }

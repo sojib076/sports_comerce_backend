@@ -14,7 +14,7 @@ const productadd = async (payload: any) => {
 }
 
 const productget = async (req: any) => {
-  console.log(req.query.category, 'req.query.searchTerm');
+ 
   const searchQuery = req.query.searchTerm as string;
   const category = req.query.category as string;
 
@@ -87,6 +87,12 @@ const updateStock = async (productIds: any, stockquantity: any) => {
 }
 
 }
+const updateProduct = async (id:string,body:any) => {
+
+  const result = await Product.findByIdAndUpdate(id,body,{new:true});
+
+  return result;
+};
 const productdelete = async (id: string) => {
   const result = await Product.findByIdAndDelete(id);
   return result;
@@ -97,5 +103,6 @@ export const ProductServices = {
   productgetbyid,
   checkStock,
   updateStock,
-  productdelete
+  productdelete,
+  updateProduct
 }
